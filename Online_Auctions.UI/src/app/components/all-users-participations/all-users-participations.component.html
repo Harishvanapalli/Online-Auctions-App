@@ -1,0 +1,50 @@
+<div class="MainContainer">
+    <div *ngIf="AllUserAprticipatedBids.length == 0" style="margin-top: 100px; margin-left: 20%;">
+      <p><strong>you have not participated in any auction</strong></p>
+    </div>
+  <div class="bidList-container" *ngFor="let bid of AllUserAprticipatedBids">
+        <h5 id="heading">Bid by <strong>{{bid.userEmail}}</strong></h5>
+      <div class="Bid">
+        <div>
+            <h5>Product Name</h5>
+            <p>{{bid.auction.product.productName}}</p>
+            <h5>Description</h5>
+            <p>{{bid.auction.product.description}}</p>
+        </div>
+
+        <div>
+            <h5>Product Category</h5>
+            <p>{{bid.auction.product.productCategory}}</p>
+        </div>
+
+        <div>
+            <h5>User BidValue</h5>
+            <p>{{bid.bidValue}}</p>
+        </div>
+
+        <div *ngIf="bid.auction.auctionInProgress"> 
+            <h5>Current BidValue</h5>
+            <p>{{bid.auction.currentBidValue}}</p>
+            <h5>Current BidUser</h5>
+            <p>{{bid.auction.currentBidUser}}</p>
+        </div>
+
+        <div *ngIf="!bid.auction.auctionInProgress">
+            <h5 *ngIf="!bid.auction.product.productSold">
+                <p>Product not sold</p>
+            </h5>
+            <h5 *ngIf="bid.auction.product.productSold">
+                <p *ngIf="bid.auction.currentBidUser == bid.userEmail">{{bid.userEmail}} bought this product</p>
+                <p *ngIf="bid.auction.currentBidUser != bid.userEmail">product sold to {{bid.auction.currentBidUser}} user</p>
+            </h5>
+        </div>
+
+        <div class = "auctionStatus">
+            <h5>Auction Status</h5>
+            <p>{{bid.auction.remainingTime}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

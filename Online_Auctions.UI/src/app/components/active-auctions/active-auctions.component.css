@@ -1,0 +1,172 @@
+.MainContainer {
+    padding: 0 20px;
+    background-color: #f8f9fa;
+    margin-top: 140px;
+  }
+  
+.auctionList-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+.Auction {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 30px;
+  }
+  
+.Auction:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+.Auction > div {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px;
+  }
+  
+.Auction h5 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+.Auction p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+.auctionStatus {
+    flex: 1;
+    min-width: 220px;
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+.auctionStatus h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #495057;
+  }
+  
+@media (max-width: 768px) {
+    .Auction {
+      flex-direction: column;
+    }
+  
+    .Auction > div {
+      min-width: auto;
+      width: 100%;
+    }
+  }
+  
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+.modal.show {
+    display: block;
+  }
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+  }
+  
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #modalButton{
+    margin-top: 10px;
+  }
+
+  #bidButton{
+    padding: 10px 25px;
+    margin-left: 80px;
+  }
+
+  #deleteButton{
+    padding: 10px 25px;
+    margin-left: 80px;
+    background-color: rgb(220, 30, 30);
+  }
+
+  .searchBar{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 40px;
+  }
+
+  .searchBar input{
+    padding: 8px 5px;
+    padding-left: 10px;
+    border-radius: 20px;
+    border: 1px solid rgb(58, 56, 56);
+    width: 400px;
+    font-size: 15px;
+    margin-left: 38%;
+  }
+
+ .sortClass{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto; 
+  } 
+
+  #priceSort{
+    border-radius: 10px;
+    padding: 2px;
+  }
+
+  #timeSort{
+    border-radius: 10px;
+    padding: 2px;
+    margin-left: 10px;
+  }
+  
+
+   
+  

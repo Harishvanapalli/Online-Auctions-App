@@ -1,0 +1,24 @@
+<div class="login">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm">
+        <label>UserId</label>
+        <input formControlName="emailID" type="text" placeholder="Enter your EmailID" />
+        <div *ngIf="loginForm.get('emailID')?.invalid && loginForm.get('emailID')?.touched" class="error">
+            <div *ngIf="loginForm.get('emailID')?.errors?.['email']">
+                Enter a valid Email Address
+            </div>
+            <div *ngIf="loginForm.get('emailID')?.errors?.['required']">
+                Please enter the Email
+            </div>
+        </div>
+
+        <label>Password</label>
+        <input formControlName="password" type="password" placeholder="Enter your password" />
+        <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="error">
+            Please Enter your EmailID
+        </div>
+
+        <button id="logbut" class="btn btn-primary" type="submit" (click)="onLogin()">Login</button>
+    </form>
+</div>
+

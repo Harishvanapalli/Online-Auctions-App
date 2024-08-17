@@ -1,0 +1,67 @@
+<div class="MainContainer">
+    <div class="buttonContainer">
+        <button (click)="AddAuction()" id="AuctionButton" >Add Auction</button>
+      </div>
+    <div *ngIf="UserAuctions.length == 0" style="margin-top: 100px; margin-left: 20%;">
+      <p><strong>you have not created any auction! you can add by clicking Add Auction Button</strong></p>
+    </div>
+  <div class="auctionList-container" *ngFor="let auction of UserAuctions">
+      <div class="Auction" (click)="openBidModal(auction.bids)">
+        <div>
+            <h5>Product Name</h5>
+            <p>{{auction.product.productName}}</p>
+            <h5>Description</h5>
+            <p>{{auction.product.description}}</p>
+        </div>
+
+        <div>
+            <h5>Starting Price</h5>
+            <p>{{auction.product.startingPrice}}</p>
+            <h5>Reserved Price</h5>
+            <p>{{auction.product.reservedPrice}}</p>
+        </div>
+
+        <div>
+            <h5>Product Category</h5>
+            <p>{{auction.product.productCategory}}</p>
+        </div>
+
+        <div *ngIf="auction.auctionInProgress"> 
+          <h5>Current BidValue</h5>
+          <p>{{auction.currentBidValue}}</p>
+          <h5>Current BidUser</h5>
+          <p>{{auction.currentBidUser}}</p>
+      </div>
+
+      <div *ngIf="!auction.auctionInProgress">
+          <h5 *ngIf="!auction.product.productSold">
+              <p>Product not sold</p>
+          </h5>
+          <h5 *ngIf="auction.product.productSold">
+              <p>product sold to {{auction.currentBidUser}} user</p>
+          </h5>
+      </div>
+
+        <div class = "auctionStatus">
+            <h5>Auction Status</h5>
+            <p>{{auction.remainingTime}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedBids" class="modal" [class.show]="isModalOpen">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Bids on this Auction</h2>
+        <div *ngIf="selectedBids.length > 0; else nobids">
+          <div *ngFor="let bid of selectedBids">
+              <div class="bid-entry">
+                  <strong>{{bid.userEmail}}:</strong>&nbsp; <span><strong>{{bid.bidValue}}</strong></span>
+              </div>
+          </div>
+        </div>
+        <ng-template #nobids>
+          <p>No bids have been placed for this Auction</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,80 @@
+<div class="searchBar" *ngIf="ActiveAuctions.length > 0">
+  <input type="text" [(ngModel)]="SearchedText" placeholder="Search auction by product Name or Category" />
+  <div class="sortClass">
+    <select (change)="OnpriceSelectionChange($event)" id="priceSort">
+      <option value="">sort by Price</option>
+      <option value="LowtoHigh">price: Low to High</option>
+      <option value="HightoLow">price: High to Low</option>
+    </select>
+
+    <select (change)="OntimeSelectionChange($event)" id="timeSort">
+      <option value="">sort by Time remaining</option>
+      <option value="LowtoHigh">time: Low to High</option>
+      <option value="HightoLow">time: High to Low</option>
+    </select>
+  </div>
+</div>
+
+<div class="MainContainer">
+    <div *ngIf="ActiveAuctions.length == 0" style="margin-top: 100px; margin-left: 20%;">
+      <p><strong>There are no Auctions going present</strong></p>
+    </div>
+  <div class="auctionList-container" *ngFor="let auction of filteredAuctions()">
+      <div class="Auction">
+        <div>
+            <h5>Product Name</h5>
+            <p>{{auction.product.productName}}</p>
+            <h5>Description</h5>
+            <p>{{auction.product.description}}</p>
+        </div>
+
+        <div>
+            <h5>Starting Price</h5>
+            <p>{{auction.product.startingPrice}}</p>
+            <h5>Reserved Price</h5>
+            <p>{{auction.product.reservedPrice}}</p>
+        </div>
+
+        <div>
+            <h5>Product Category</h5>
+            <p>{{auction.product.productCategory}}</p>
+        </div>
+
+        <div>
+            <h5>Current BidValue</h5>
+            <p>{{auction.currentBidValue}}</p>
+            <h5>Current BidUser</h5>
+            <p>{{auction.currentBidUser}}</p>
+        </div>
+
+        <div class = "auctionStatus">
+            <h5>Auction Status</h5>
+            <p>{{getTimeInHoursandMinutes(auction.remainingTime)}}</p>
+        </div>
+
+        <div *ngIf="UserRole == 'User'">
+            <button (click)="openBidModal(auction)" id="bidButton" class="btn btn-primary" [disabled]="checkUser(auction.product.userEmail)">Bid</button>
+            <p *ngIf="checkUser(auction.product.userEmail)">This Auction is created by you</p>
+          </div>
+
+          <div *ngIf="UserRole == 'Administrator'">
+            <button (click)="deleteAuction(auction)" id ="deleteButton" class="btn btn-primary">Delete</button>
+          </div>
+
+      </div>
+    </div>
+    <div *ngIf="selectedAuction" class="modal" [class.show]="isModalOpen">
+        <div class="modal-content">
+          <span class="close" (click)="closeModal()">&times;</span>
+          <h2>Place Your Bid</h2>
+          <form (ngSubmit)="submitBid()">
+            <div class="form-group">
+              <label for="bidValue">Bid Value</label>
+              <input type="number" id="bidValue" [(ngModel)]="bidValue" name="bidValue" class="form-control" required>
+            </div>
+            <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
+            <button type="submit" id="modalButton" class="btn btn-primary">Submit Bid</button>
+          </form>
+        </div>
+      </div>
+  </div>

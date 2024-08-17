@@ -1,0 +1,23 @@
+<div class="admin-panel">
+    <h2>User Management</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>EmailID</th>
+          <th>Password</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of Users">
+          <td>{{ user.userName }}</td>
+          <td>{{user.emailId}}</td>
+          <td>{{ user.password }}</td>
+          <td>
+            <button (click)="SuspendToggle(user)" [ngClass]="{'resume-button' : user.suspend, 'suspend-button' : !user.suspend}">{{user.suspend ? "Resume" : "Suspend"}}</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

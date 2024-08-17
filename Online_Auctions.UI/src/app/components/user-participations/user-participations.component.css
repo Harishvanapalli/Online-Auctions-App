@@ -1,0 +1,77 @@
+.MainContainer {
+    padding: 20px;
+    background-color: #f8f9fa; 
+    padding-top: 60px;
+  }
+  
+  .bidList-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+  }
+  
+  .Bid {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+    background-color: #ffffff; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    margin-top: 10px;
+  }
+  
+  .Bid:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .Bid > div {
+    flex: 1;
+    min-width: 220px; 
+    padding: 10px; 
+  }
+  
+  .Bid h5 {
+    margin: 0 0 4px; 
+    font-size: 18px; 
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .Bid p {
+    margin: 0;
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #666;
+  }
+  
+  .auctionStatus {
+    flex: 1;
+    min-width: 220px;
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px; 
+    border: 1px solid #ddd;
+  }
+  
+  .auctionStatus h5 {
+    margin-bottom: 10px;
+    font-size: 18px; 
+    font-weight: bold;
+    color: #495057;
+  }
+  
+  @media (max-width: 768px) {
+    .Bid {
+      flex-direction: column;
+    }
+  
+    .Bid > div {
+      min-width: auto;
+      width: 100%;
+    }
+  }
+
+  

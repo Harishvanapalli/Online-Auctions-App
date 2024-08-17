@@ -1,0 +1,31 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Expense App</a>&nbsp; &nbsp; &nbsp;
+
+      <a class="navbar-brand" *ngIf="CheckStatus">Hii &nbsp;{{UserName}}</a>&nbsp;
+
+      <a class="navbar-brand" routerLink="/userAuctions" *ngIf="UserRole == 'User'">My Auctions</a>&nbsp; &nbsp; &nbsp;
+
+      <a class="navbar-brand" routerLink="/activeAuctions">Auctions</a>&nbsp;
+
+      <a class="navbar-brand" routerLink="/userParticipations" *ngIf="UserRole == 'User'">participations</a>&nbsp; &nbsp; &nbsp;
+
+      <a class="navbar-brand" routerLink="/usersDetails" *ngIf="UserRole == 'Administrator'">Users</a>&nbsp; &nbsp; &nbsp;
+
+      <a class="navbar-brand" routerLink="/allUsersParticipations" *ngIf="UserRole == 'Administrator'">Users Participations</a>&nbsp; &nbsp; &nbsp;
+
+      <a class="navbar-brand" routerLink="/allUsersStartedAuctions" *ngIf="UserRole == 'Administrator'">Users Auctions</a>&nbsp; &nbsp; &nbsp;
+
+      <div class="navbar-nav ms-auto">
+        <ng-container *ngIf="!CheckStatus; else LoggedIn">
+          <a class="navbar-brand" routerLink="/loginpage">Login</a>
+        </ng-container>
+        <ng-template #LoggedIn>
+          <button id="logoutbutton" (click)="LogOut()" *ngIf="CheckStatus">Logout</button>
+        </ng-template>
+    </div>
+      
+  </div>
+</nav> 
+
+<router-outlet></router-outlet>
